@@ -37,7 +37,7 @@
   </figure>
 
   {{ .Content }}
-  {{- with resources.Get (printf "scripts/letters/%s/index.ts" .File.ContentBaseName) }}
+  {{- with resources.Get (printf "/scripts/letters/%s/index.ts" .File.ContentBaseName) }}
     {{- $opts := dict "format" "esm" }}
     {{- if eq hugo.Environment "development" }}
       {{- with . | js.Build $opts }}
