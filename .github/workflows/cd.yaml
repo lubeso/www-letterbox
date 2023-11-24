@@ -1,0 +1,76 @@
+name: Continuous Deployment (CD)
+
+on:
+  push:
+    branches:
+      - "main"
+    # TODO: Reapply paths filter
+    # paths:
+    #   - archetypes/**.md
+    #   - assets/styles/**.css
+    #   - assets/scripts/**.ts
+    #   - content/**.md
+    #   - layout/**.html
+    #   - go.mod
+    #   - go.sum
+    #   - hugo.yaml
+    #   - package.hugo.json
+    #   - package.json
+    #   - pnpm-lock.yaml
+    #   - postcss.config.js
+    #   - tailwind.config.js
+
+jobs:
+  cd:
+    name: CD
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - id: google_cloud_auth
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+          token_format: "access_token"
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: "8.10.5"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.5.0"
+          cache: pnpm
+
+      - name: Set up Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.120.3"
+
+      - name: Install dependencies
+        run: |
+          hugo mod get
+          pnpm install
+
+      - name: Build site assets
+        run: hugo
+
+      - name: Set up Google Cloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          version: ">= 455.0.0"
+
+      - name: Upload to storage
+        uses: google-github-actions/upload-cloud-storage@v1
+        with:
+          destination: ${{ secrets.GCP_STORAGE_BUCKET }}
+          parent: false
+          path: public
