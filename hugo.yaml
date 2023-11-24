@@ -1,0 +1,11 @@
+baseURL: https://letterbox.lubeso.dev/
+languageCode: en-us
+title: Letterbox
+
+build:
+  writeStats: true
+
+module:
+  imports:
+    - path: github.com/lubeso/hugo-themes-personal
+      disable: false

@@ -1,0 +1,17 @@
+:root {
+  /* <!-- Variable definitions --> */
+  --theme-light-background-color: lightblue;
+  --theme-light-stroke-color: #1b093f;
+  --theme-dark-background-color: var(--theme-light-stroke-color);
+  --theme-dark-stroke-color: var(--theme-light-background-color);
+  /* <!-- Set default theme --> */
+  --theme-background-color: var(--theme-light-background-color);
+  --theme-stroke-color: var(--theme-light-stroke-color);
+}
+/* <!-- Set dark theme --> */
+@media (prefers-color-scheme: dark) {
+  :root {
+  --theme-background-color: var(--theme-dark-background-color);
+  --theme-stroke-color: var(--theme-dark-stroke-color);
+  }
+}

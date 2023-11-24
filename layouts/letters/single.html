@@ -1,0 +1,54 @@
+{{ define "main" }}
+  <h2 class="min-h-fit p-4 text-center text-bold text-4xl">
+    {{ .Title }}
+  </h2>
+
+  {{- with .Date -}}
+    {{- $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" -}}
+    {{- $dateHuman := . | time.Format ":date_long" -}}
+    <time class="text-center" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  {{- end -}}
+
+  <figure class="flex flex-col items-center justify-evenly space-y-4 p-8">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="rounded-lg">
+      <!-- Configuration -->
+        {{- with resources.Get (printf "styles/letters/%s/index.css" .File.ContentBaseName) | postCSS }}
+          <style type="text/css">
+            {{- .Content | safeCSS -}}
+          </style>
+        {{- end }}
+      <!-- Layers -->
+      <g data-type="layer" id="background">
+        <rect
+          x="0%"
+          y="0%"
+          width="100%"
+          height="100%"
+          fill="var(--theme-background-color)"
+        ></rect>
+      </g>
+      <g data-type="layer" id="foreground">
+        <!-- This block is intentionally left blank. -->
+      </g>
+    </svg>
+    <figcaption class="text-center text-lg">
+      <!-- Please provide a caption for the image. -->
+    </figcaption>
+  </figure>
+
+  {{ .Content }}
+  {{- with resources.Get (printf "scripts/letters/%s/index.ts" .File.ContentBaseName) }}
+    {{- $opts := dict "format" "esm" }}
+    {{- if eq hugo.Environment "development" }}
+      {{- with . | js.Build $opts }}
+        <script type="module" src="{{ .RelPermalink }}"></script>
+      {{- end }}
+    {{- else }}
+      {{- $opts = merge (dict "minify" true) $opts }}
+      {{- with . | js.Build $opts | fingerprint | resources.PostProcess }}
+        <script type="module" src="{{ .RelPermalink }}" integrity="{{- .Data.Integrity }}" crossorigin="anonymous"></script>
+      {{- end }}
+    {{- end }}
+  {{- end }}
+  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+{{ end }}

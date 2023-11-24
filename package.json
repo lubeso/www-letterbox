@@ -1,0 +1,32 @@
+{
+  "author": "Luis Becerra Solis <lubeso@icloud.com>",
+  "comments": {
+    "dependencies": {
+      "d3-selection": "project"
+    },
+    "devDependencies": {
+      "@types/d3-selection": "project",
+      "autoprefixer": "github.com/lubeso/hugo-themes-personal",
+      "postcss": "github.com/lubeso/hugo-themes-personal",
+      "postcss-cli": "github.com/lubeso/hugo-themes-personal",
+      "tailwindcss": "github.com/lubeso/hugo-themes-personal"
+    }
+  },
+  "dependencies": {
+    "d3-selection": "^3.0.0"
+  },
+  "description": "Letterbox website.",
+  "devDependencies": {
+    "@types/d3-selection": "^3.0.10",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "tailwindcss": "^3.3.5"
+  },
+  "keywords": [],
+  "license": "MIT",
+  "name": "@lubeso/www-letterbox",
+  "packageManager": "pnpm@8.10.5",
+  "private": "true",
+  "version": "0.0.0"
+}
