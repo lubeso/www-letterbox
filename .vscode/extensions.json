@@ -2,6 +2,7 @@
   "recommendations": [
     "DavidAnson.vscode-markdownlint",
     "EditorConfig.EditorConfig",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "tilt-dev.tiltfile"
   ]
 }
