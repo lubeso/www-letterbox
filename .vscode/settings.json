@@ -16,6 +16,9 @@
     "editor.unicodeHighlight.invisibleCharacters": false,
     "editor.wordWrap": "on",
   },
+  "[tiltfile]": {
+    "editor.defaultFormatter": "tilt-dev.tiltfile"
+  },
   "[yaml]": {
     "diffEditor.ignoreTrimWhitespace": false,
     "editor.autoIndent": "keep",
