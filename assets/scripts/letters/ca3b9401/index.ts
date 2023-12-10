@@ -48,7 +48,7 @@ function main(): void {
     .append("g")
       .attr("id", "lines");
 
-  const numPointsPerLine = 100;
+  const numPointsPerLine = 1_000;
   const spaceBetweenPoints = 1 / (numPointsPerLine - 1);
 
   for (let i = 0; i < numLines; i++) {
