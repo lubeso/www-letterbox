@@ -13,11 +13,17 @@
     }
   },
   "dependencies": {
-    "d3-selection": "^3.0.0"
+    "@types/d3-array": "^3.2.1",
+    "d3-array": "^3.2.4",
+    "d3-scale": "^4.0.2",
+    "d3-selection": "^3.0.0",
+    "d3-shape": "^3.2.0"
   },
   "description": "Letterbox website.",
   "devDependencies": {
+    "@types/d3-scale": "^4.0.8",
     "@types/d3-selection": "^3.0.10",
+    "@types/d3-shape": "^3.1.6",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
