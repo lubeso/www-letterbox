@@ -68,6 +68,10 @@ jobs:
         with:
           version: ">= 455.0.0"
 
+      - name: Erase current assets
+        run: |
+          gcloud storage rm gs://${{ secrets.GCP_STORAGE_BUCKET }}/**
+
       - name: Upload to storage
         uses: google-github-actions/upload-cloud-storage@v1
         with:
