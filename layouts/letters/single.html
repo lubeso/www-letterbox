@@ -12,13 +12,16 @@
   <figure class="flex flex-col items-center justify-evenly space-y-4 p-8">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="rounded-lg">
       <!-- Configuration -->
-        {{- with resources.Get (printf "styles/letters/%s/index.css" .File.ContentBaseName) | postCSS }}
-          <style type="text/css">
-            {{- .Content | safeCSS -}}
-          </style>
-        {{- end }}
+      <clipPath id="bounding-box">
+        <rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+        ></rect>
+      </clipPath>
       <!-- Layers -->
-      <g data-type="layer" id="background">
+      <g data-type="layer" id="background" clip-path="url(#bounding-box)">
         <rect
           x="0%"
           y="0%"
@@ -27,7 +30,7 @@
           fill="var(--theme-background-color)"
         ></rect>
       </g>
-      <g data-type="layer" id="foreground">
+      <g data-type="layer" id="foreground" clip-path="url(#bounding-box)">
         <!-- This block is intentionally left blank. -->
       </g>
     </svg>
