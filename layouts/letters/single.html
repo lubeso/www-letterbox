@@ -40,6 +40,7 @@
   </figure>
 
   {{ .Content }}
+  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
   {{- with resources.Get (printf "/scripts/letters/%s/index.ts" .File.ContentBaseName) }}
     {{- $opts := dict "format" "esm" }}
     {{- if eq hugo.Environment "development" }}
@@ -53,5 +54,4 @@
       {{- end }}
     {{- end }}
   {{- end }}
-  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
 {{ end }}
