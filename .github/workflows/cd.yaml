@@ -4,21 +4,20 @@ on:
   push:
     branches:
       - "main"
-    # TODO: Reapply paths filter
-    # paths:
-    #   - archetypes/**.md
-    #   - assets/styles/**.css
-    #   - assets/scripts/**.ts
-    #   - content/**.md
-    #   - layout/**.html
-    #   - go.mod
-    #   - go.sum
-    #   - hugo.yaml
-    #   - package.hugo.json
-    #   - package.json
-    #   - pnpm-lock.yaml
-    #   - postcss.config.js
-    #   - tailwind.config.js
+    paths:
+      - archetypes/**.md
+      - assets/**.css
+      - assets/**.ts
+      - content/**.md
+      - layout/**.html
+      - go.mod
+      - go.sum
+      - hugo.yaml
+      - package.hugo.json
+      - package.json
+      - pnpm-lock.yaml
+      - postcss.config.js
+      - tailwind.config.js
 
 jobs:
   cd:
