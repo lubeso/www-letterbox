@@ -6,10 +6,12 @@
   {{- with .Date -}}
     {{- $dateMachine := . | time.Format "2006-01-02T15:04:05-07:00" -}}
     {{- $dateHuman := . | time.Format ":date_long" -}}
-    <time class="text-center" datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+    <time class="text-center text-2xl" datetime="{{ $dateMachine }}">
+      {{ $dateHuman }}
+    </time>
   {{- end -}}
 
-  <figure class="flex flex-col items-center justify-evenly space-y-4 p-8">
+  <figure class="flex flex-col items-center justify-evenly space-y-8 p-8">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" class="rounded-lg">
       <!-- Configuration -->
       {{- with resources.Get (printf "/styles/letters/%s/index.css" .File.ContentBaseName) | postCSS }}
@@ -39,7 +41,7 @@
         <!-- This block is intentionally left blank. -->
       </g>
     </svg>
-    <figcaption class="text-center text-sm">
+    <figcaption class="text-center text-lg">
       {{ default "No caption provided." .Params.caption }}
     </figcaption>
   </figure>
